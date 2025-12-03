@@ -2,6 +2,7 @@ package com.university.attendance.gui;
 
 import com.university.attendance.entities.*;
 import com.university.attendance.services.*;
+import java.util.stream.Collectors;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -170,7 +171,7 @@ form.add(emailField);
                 List<Student> allStudents = studentService.getAllStudents();
                 List<Student> filtered = allStudents.stream()
                         .filter(s -> s.getName().toLowerCase().contains(text) || s.getEmail().toLowerCase().contains(text))
-                        .toList();
+                        .collect(Collectors.toList());
                 String[][] data = new String[filtered.size()][3];
                 for (int i = 0; i < filtered.size(); i++) {
                     Student s = filtered.get(i);
@@ -301,7 +302,7 @@ event.DocumentEvent e) { filter(); }
                 List<Course> allCourses = courseService.getAllCourses();
                 List<Course> filtered = allCourses.stream()
                         .filter(c -> c.getName().toLowerCase().contains(text))
-                        .toList();
+                        .collect(Collectors.toList());
                 String[][] data = new String[filtered.size()][2];
                 for (int i = 0; i < filtered.size(); i++) {
                     Course c = filtered.get(i);
